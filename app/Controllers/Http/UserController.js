@@ -2,6 +2,7 @@
 
 const User = use('App/Models/User')
 const { validate } = use('Validator')
+const Logger = use('Logger')
 
 class UserController {
 
@@ -16,6 +17,9 @@ class UserController {
 
   async registration ({ request, auth, response }) {
     const { email, password, username } = request.all()
+    Logger.info('auth', email);
+    Logger.info('auth', password);
+    Logger.info('auth', username);
     const rules = {
       email: 'required|email|unique:users,email',
       username: 'required|string|unique:users,username',
